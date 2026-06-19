@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshBtn = document.getElementById('refresh-btn');
     const spinnerIcon = document.getElementById('spinner-icon');
     const exportBtn = document.getElementById('export-btn');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
     const loader = document.getElementById('loader');
     const notesContainer = document.getElementById('notes-container');
     const errorContainer = document.getElementById('error-message');
@@ -9,11 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentNotes = [];
 
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeIcon.className = 'fa-regular fa-moon';
+    }
+
     // Fetch on initial load
     fetchNotes();
 
     refreshBtn.addEventListener('click', fetchNotes);
     exportBtn.addEventListener('click', exportToCSV);
+    themeToggleBtn.addEventListener('click', toggleTheme);
 
     async function fetchNotes() {
         setLoadingState(true);
@@ -195,5 +205,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    }
+
+    function toggleTheme() {
+        if (document.body.classList.contains('light-theme')) {
+            document.body.classList.remove('light-theme');
+            themeIcon.className = 'fa-regular fa-sun';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.classList.add('light-theme');
+            themeIcon.className = 'fa-regular fa-moon';
+            localStorage.setItem('theme', 'light');
+        }
     }
 });
