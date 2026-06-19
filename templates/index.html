@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-title">
+                <i class="fa-solid fa-database"></i>
+                <h1>BigQuery Release Notes</h1>
+            </div>
+            <button id="refresh-btn" class="btn btn-primary">
+                <i class="fa-solid fa-rotate-right" id="spinner-icon"></i>
+                <span>Refresh</span>
+            </button>
+        </header>
+
+        <main class="content">
+            <div id="loader" class="loader-container">
+                <div class="spinner"></div>
+                <p>Fetching latest updates...</p>
+            </div>
+            <div id="notes-container" class="notes-grid hidden">
+                <!-- Notes will be injected here -->
+            </div>
+            <div id="error-message" class="error-message hidden">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p id="error-text">Failed to load release notes.</p>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
